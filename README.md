@@ -2,7 +2,7 @@
 Backend in django to study this technology
 
 ## Create a local envirionment to run properly this project
-- python3.10 venv .env
+- python3.10 -m venv .env
   
 ## Activate the local env with you editor or command line.
 - On Unix or MacOS, using the bash shell: source /path/to/venv/bin/activate
@@ -12,9 +12,9 @@ Backend in django to study this technology
 - On Windows using PowerShell: path\to\venv\Scripts\Activate.ps1
 
 ##Run you python env and install all requirements
- - pip install -r requirements.txt
+ - pip3 install -r requirements.txt
     
 ##Run the server with the command:
  - cd petJournal
- - python manage.py runserver
+ - python3.10 manage.py runserver
    - if you wish to change the port just add as follow ...runserver:<PORT>
