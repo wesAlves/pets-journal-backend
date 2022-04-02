@@ -1,3 +1,4 @@
+import string
 from django.db import models
 from uuid import uuid4
 
@@ -10,23 +11,6 @@ class User(models.Model):
     email = models.EmailField(unique=True, blank=False,
                               null=False, primary_key=True)
     password = models.CharField(max_length=200)
-
-    created_at = models.DateField(auto_now_add=True)
-
-
-class Pets(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    name = models.CharField(max_length=100)
-    birthDate = models.CharField(max_length=100)
-    breed = models.CharField(max_length=100)
-    weight = models.FloatField(max_length=100)
-    weightUnity = models.CharField(max_length=100)
-    imgURL = models.CharField(max_length=100)
-    femaleOrMale = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    haveMedicines = models.CharField(max_length=100)
-    haveVaccines = models.CharField(max_length=100)
 
     created_at = models.DateField(auto_now_add=True)
 
@@ -47,15 +31,6 @@ class Vaccines(models.Model):
     application_mode = models.CharField(max_length=50)
 
 
-class PetMedicines(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    applicationDate = models.DateField()
-    medicine = models.ForeignKey(Medicines, on_delete=models.CASCADE)
-    doses_per_application = models.IntegerField()
-    time_between_doses = models.IntegerField()
-    expires_on = models.DurationField()
-
-
 class PetVaccines(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     applicationDate = models.DateField()
@@ -63,3 +38,29 @@ class PetVaccines(models.Model):
     doses_per_application = models.IntegerField()
     time_between_doses = models.IntegerField()
     expires_on = models.DurationField()
+
+
+class PetMedicines(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    applicationDate = models.DateField()
+    doses_per_application = models.IntegerField()
+    time_between_doses = models.IntegerField()
+    expires_on = models.DurationField()
+    medicine = models.ManyToManyField(Medicines)
+
+
+class Pets(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    name = models.CharField(max_length=100)
+    birthDate = models.CharField(max_length=100)
+    breed = models.CharField(max_length=100)
+    weight = models.FloatField(max_length=100)
+    weightUnity = models.CharField(max_length=100)
+    imgURL = models.CharField(max_length=100)
+    femaleOrMale = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    haveMedicines = models.ForeignKey(
+        PetMedicines, on_delete=models.CASCADE, blank=True, null=True)
+    haveVaccines = models.CharField(max_length=100, blank=True, null=True)
+    created_at = models.DateField(auto_now_add=True)

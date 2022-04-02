@@ -6,6 +6,7 @@ from backend.api import serializers
 # Start to import views from viewsetsCases
 from backend.api.viewsetsCases import userViewset as User
 from backend.api.viewsetsCases import petViewset as Pets
+from backend.api.viewsetsCases import medicinesViewset as Medicines
 
 
 # class PetsViweSet(viewsets.ModelViewSet):
@@ -13,9 +14,9 @@ from backend.api.viewsetsCases import petViewset as Pets
 #     queryset = models.Pets.objects.all()
 
 
-class MedicinesViweSet(viewsets.ModelViewSet):
-    serializer_class = serializers.MedicinesSerializer
-    queryset = models.Medicines.objects.all()
+# class MedicinesViweSet(viewsets.ModelViewSet):
+#     serializer_class = serializers.MedicinesSerializer
+#     queryset = models.Medicines.objects.all()
 
 
 class PetsMedicinesViweSet(viewsets.ModelViewSet):
