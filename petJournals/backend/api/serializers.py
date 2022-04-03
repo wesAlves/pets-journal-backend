@@ -3,6 +3,7 @@ from backend import models
 
 
 class PetsSerializer(serializers.ModelSerializer):
+    haveMedicines = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     class Meta:
         model = models.Pets
         fields = "__all__"

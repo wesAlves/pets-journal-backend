@@ -19,16 +19,16 @@ from backend.api.viewsetsCases import medicinesViewset as Medicines
 #     queryset = models.Medicines.objects.all()
 
 
-class PetsMedicinesViweSet(viewsets.ModelViewSet):
-    serializer_class = serializers.PetMedicinesSerializer
-    queryset = models.PetMedicines.objects.all()
+# class PetsMedicinesViweSet(viewsets.ModelViewSet):
+#     serializer_class = serializers.PetMedicinesSerializer
+#     queryset = models.PetMedicines.objects.all()
 
 
-class VaccinesViweSet(viewsets.ModelViewSet):
-    serializer_class = serializers.VaccinesSerializer
-    queryset = models.Vaccines.objects.all()
+# class VaccinesViweSet(viewsets.ModelViewSet):
+#     serializer_class = serializers.VaccinesSerializer
+#     queryset = models.Vaccines.objects.all()
 
 
-class PetsVaccinesViweSet(viewsets.ModelViewSet):
-    serializer_class = serializers.PetVaccinesSerializer
-    queryset = models.PetVaccines.objects.all()
+# class PetsVaccinesViweSet(viewsets.ModelViewSet):
+#     serializer_class = serializers.PetVaccinesSerializer
+#     queryset = models.PetVaccines.objects.all()

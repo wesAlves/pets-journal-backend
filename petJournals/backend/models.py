@@ -1,4 +1,3 @@
-import string
 from django.db import models
 from uuid import uuid4
 
@@ -40,13 +39,6 @@ class PetVaccines(models.Model):
     expires_on = models.DurationField()
 
 
-class PetMedicines(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    applicationDate = models.DateField()
-    doses_per_application = models.IntegerField()
-    time_between_doses = models.IntegerField()
-    expires_on = models.DurationField()
-    medicine = models.ManyToManyField(Medicines)
 
 
 class Pets(models.Model):
@@ -60,7 +52,16 @@ class Pets(models.Model):
     femaleOrMale = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    haveMedicines = models.ForeignKey(
-        PetMedicines, on_delete=models.CASCADE, blank=True, null=True)
-    haveVaccines = models.CharField(max_length=100, blank=True, null=True)
+    # haveMedicines = models.ForeignKey(
+    #     PetMedicines, on_delete=models.CASCADE, blank=True, null=True)
+    # haveVaccines = models.CharField(max_length=100, blank=True, null=True)
     created_at = models.DateField(auto_now_add=True)
+
+class PetMedicines(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+    applicationDate = models.DateField()
+    doses_per_application = models.IntegerField()
+    time_between_doses = models.IntegerField()
+    expires_on = models.DurationField()
+    medicine = models.ManyToManyField(Medicines)
+    pet_owner = models.ForeignKey(Pets, on_delete=models.CASCADE,blank=True, null=True )
