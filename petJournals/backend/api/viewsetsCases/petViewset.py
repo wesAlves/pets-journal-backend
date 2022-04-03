@@ -3,8 +3,9 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
 
-from backend.models import Pets
-from backend.api.serializers import PetsSerializer
+from backend.models import Pets, PetMedicines, PetVaccines
+from backend.api.serializers import PetsSerializer, PetMedicinesSerializer, PetVaccinesSerializer
+
 
 
 class PetsList(APIView):
@@ -53,3 +54,12 @@ class PetDetail(APIView):
         pet.delete()
 
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class PetMedicinesList(APIView):
+
+    def get(self, request, pk):
+        pet_medicines = PetMedicines.objects.all()
+        filtered_medicines = pet_medicines.filter(pet_owner = pk)
+        serializer = PetMedicinesSerializer(filtered_medicines, many=True)
+
+        return Response(serializer.data)
